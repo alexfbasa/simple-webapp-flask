@@ -1,9 +1,9 @@
-FROM ubuntu:16.04
+FROM ubuntu:20.04
 
-RUN apt-get update && apt-get install -y python python-pip
-RUN pip install --upgrade pip==21.2.4
-RUN pip install --no-cache-dir flask
+RUN apt-get update && apt-get install -y python3 python3-pip
+
+RUN pip install flask 
 
 COPY app.py /opt/
 
-ENTRYPOINT ["flask", "run", "--host=0.0.0.0", "--port=8080"]
+ENTRYPOINT FLASK_APP=/opt/app.py flask run --host=0.0.0.0 --port=8080
